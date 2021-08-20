@@ -1,0 +1,546 @@
+@import "lib/color";
+@import "lib/mixin";
+
+$contentsW : 80%;
+
+/*
+  module
+-------------------------------*/
+/* コンテナ */
+.section{
+  padding: 4rem 0;
+  position: relative;
+  &::before{
+    @include absolute_pos(0, 0, 72%, 0);
+    @include opacity(0.3);
+    background-color: $baseColor;
+    content: '';
+    height: 100%;
+    left: 72%;
+    width: 1px;
+  }
+  >*{
+    position: relative;
+  }
+}
+.section__inner{
+  height: 100%;
+  margin: 0 2.4rem;
+}
+
+@include mq_pc {
+  .section{
+    padding: 6.4rem 0;
+  }
+  .section__inner{
+    height: 100%;
+    margin: 0 2.4rem;
+    @include contents_pc;
+  }
+}
+
+/* フォント */
+.ft-en{
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 300;
+}
+
+/* 見出し */
+.ttl-label{
+  background-color: $bgColor;
+  margin-bottom: 1.6rem;
+  padding: 2.4rem;
+}
+.lv1-heading,
+.lv2-heading{
+  line-height: 1;
+}
+.lv3-heading{
+  line-height: 1.5;
+  font-weight: bold;
+}
+.lv1-heading{
+  font-size: 8rem;
+  .term{
+    align-items: center;
+    display: flex;
+    font-size: 1.6rem;
+    width: 100%;
+    &::before{
+      border-top: 1px solid;
+      content: '';
+      display: inline-block;
+      height: 1px;
+      margin-right: .8rem;
+      vertical-align: middle;
+      width: 4rem;
+    }
+  }
+}
+.lv2-heading{
+  font-size: 10rem;
+  -ms-writing-mode: tb-rl;
+	writing-mode: vertical-rl;
+}
+.lv3-heading{
+  font-size: 1.6rem;
+}
+
+@include mq_pc {
+  .ttl-label{
+    padding: 3.2rem 0;
+    >*{
+      @include contents_pc;
+    }
+  }
+  .lv1-heading{
+    font-size: 9.6rem;
+  }
+  .lv3-heading{
+    font-size: 1.8rem;
+  }
+}
+
+/* リンク */
+.link-txt{
+  color: $linkColor;
+  display: inline-block;
+  text-decoration: underline;
+}
+.btn{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 3.2rem auto -2.4rem;
+  text-align: center;
+  >*{
+    background-color: $accentColor;
+    border: 1px solid $bgColor;
+    border-radius: 4px;
+    color: $baseColor;
+    margin-bottom: 2.4rem;
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+@include mq_pc {
+  .link-txt:hover{
+    text-decoration: none;
+  }
+  .btn{
+    margin: 6.4rem auto -2.4rem;
+    >*{
+      margin: 0 2.5% 2.4rem;
+      width: 30%;
+    }
+  }
+  .btn:hover{
+    
+  }
+}
+
+/* ブロック */
+// ユニークセクション
+.sidemenu{
+  background-color: $accentColor;
+  border-top: 8px solid $baseColor;
+  &__link{
+    align-items: center;
+    color: $bgColor;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    > *{
+      margin: 1.6rem .8rem;
+    }
+  }
+}
+.hero{
+  background-color: $bgColor;
+  height: 100vh;
+  min-height: 500px;
+  padding: 0;
+  &__contents{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+  &__ttl{
+    font-size: 4rem;
+    position: relative;
+    text-align: center;
+    >*{
+      display: block;
+      line-height: 1;
+    }
+    .ttl-main{
+      border-bottom: 4px solid;
+      display: inline-block;
+      font-weight: bold;
+      letter-spacing: 1rem;
+      padding-bottom: 1.8rem;
+    }
+    .ttl-desc{
+      color: $subColor;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      margin-top: 2.4rem;
+    }
+  }
+}
+
+.works{
+  background-color: $accentColor;
+  &-contents{
+    background-color: $bgColor;
+  }
+  &__ttl{
+    @include absolute_pos(0,0,auto,auto);
+    color: $baseColor;
+    margin-left: auto;
+    &::before{
+      @include absolute_pos(0,0,auto,auto);
+      background: url(../images/img-himawari.png) no-repeat center;
+      background-size: contain;
+      content: '';
+      display: block;
+    }
+    +*{
+      position: relative;
+    }
+  }
+}
+
+.blog{
+  background-color: $accentColor-20;
+  &::before{
+    background-color: $accentColor;
+  }
+  &__ttl{
+    @include absolute_pos(0,auto,auto,0);
+    color: $accentColor;
+  }
+}
+
+.about{
+  background-color: $baseColor;
+  &::before{
+    background-color: $accentColor;
+  }
+  &__ttl{
+    @include absolute_pos(0,0,auto, auto);
+    color: $bgColor;
+    margin-left: auto;
+    +*{
+      position: relative;
+    }
+  }
+  &__desc{
+    padding-top: 4rem;
+    width: $contentsW;
+  }
+  .txt .sub{
+    @include opacity(.4);
+  }
+}
+
+
+@include mq_pc {
+  .hero{
+    &__ttl{
+      .ttl-main{
+        font-size: 8rem;
+        padding: 2.4rem;
+      }
+      .ttl-desc{
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .works{
+    &__ttl{
+      @include absolute_pos(0,5%,auto,auto);
+      color: $baseColor;
+    }
+  }
+  .blog{
+    &__ttl{
+      left: 5%;
+    }
+  }
+  .about{
+    &__ttl{
+      right: 5%;
+    }
+    &__desc{
+      padding-top: 8rem;
+    }
+  }
+}
+
+// モジュール
+.txt{
+  >*+*{
+    margin-top: 2em;
+  }
+}
+.work-list{
+  min-height: 24rem;
+  padding-top: 4rem;
+  width: $contentsW;
+  &__item{
+    position: relative;
+    a{
+      display: block;
+    }
+    + *{
+      margin-top: 2.4rem;
+    }
+  }
+  &__img{
+    background-color: $inactiveColor;
+    width: 100%;
+    img{
+      display: block;
+    }
+  }
+  &__info{
+    margin-top: .4rem;
+    .tag{
+      color: $accentColor;
+      font-size: 1.2rem;
+      a{
+        border: 1px solid $baseColor;
+        color: $baseColor;
+        display: inline-block;
+        margin-right: .8rem;
+        margin-top: .4rem;
+        padding: .2rem 1rem;
+      }
+    }
+    .date{
+      @include absolute_pos(0,0,auto,auto);
+      background-color: $txtColor;
+      color: $baseColor;
+      font-size: 1.2rem;
+      margin: .4rem;
+      padding: 0 1rem;
+    }
+  }
+}
+.archive .works,
+.single .works{
+  padding-top: 8rem;
+}
+.archive .work-list,
+.single .work-list{
+  width: 100%;
+}
+.archive .work-list{
+  padding-top: 12rem;
+}
+.single .work-list{
+  padding-top: 0;
+}
+.blog-list{
+  margin-left: auto;
+  min-height: 24rem;
+  padding-top: 4rem;
+  width: $contentsW;
+  &__item{
+    background-color: $bgColor;
+    position: relative;
+    a{
+      display: block;
+      padding: 1.6rem;
+    }
+    + *{
+      position: relative;
+      &::before{
+        @include absolute_pos(0,50%,auto,auto);
+        background-color: $baseColor;
+        content: '';
+        display: block;
+        height: 1px;
+        transform: translateX(50%);
+        width: 98%;
+      }
+    }
+  }
+  &__info{
+    .tag{
+      color: $subColor;
+      font-size: 1.2rem;
+      font-weight: 300;
+      a{
+        display: inline-block;
+      }
+    }
+    .date{
+      color: $subColor;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-right: .8rem;
+    }
+  }
+}
+.archive .blog,
+.single .blog{
+  padding-top: 8rem;
+}
+.archive .blog-list,
+.single .blog-list{
+  width: 100%;
+}
+.archive .blog-list{
+  padding-top: 12rem;
+}
+.single .blog-list{
+  padding-top: 0;
+  &__item{
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+}
+.personal-info{
+  background-color: $bgColor;
+  border-radius: 4px;
+  color: $txtColor;
+  padding: 6.2rem 2.4rem 2.4rem;
+  position: relative;
+  margin-top: 8rem;
+  &__icon{
+    @include absolute_pos(-50px,0,auto,50%);
+    border-radius: 50%;
+    max-width: 50%;
+    overflow: hidden;
+    transform: translateX(-50%);
+    width: 100px;
+  }
+  &__name{
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__desc{
+    font-size: 1.2rem;
+    margin-top: .8rem;
+    text-align: left;
+  }
+}
+.social-link{
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  a{
+    display: block;
+    height: 40px;
+    margin: 0 1.2rem;
+    width: 32px;
+  }
+}
+
+@include mq_pc {
+  .work-list{
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 -2.4rem;
+    padding-top: 8rem;
+    width: calc(100% - 14.4rem);
+    &__item{
+      margin-bottom: 2.4rem;
+      margin-right: 5%;
+      width: 47.5%;
+      + *{
+        margin-top: 0;
+      }
+      &:nth-of-type(2n){
+        margin-right: 0;
+      }
+      a{
+        &:hover,&:focus{
+          @include opacity(.8);
+        }
+      }
+    }
+    &__img{
+      background-color: $bgColor;
+    }
+    &__info{
+      .date{
+        margin: .8rem;
+      }
+    }
+  }
+  .archive .works{
+    &__ttl{
+      left: 5%;
+      right: auto;
+    }
+  }
+  .archive .work-list{
+    padding-top: 14.4rem;
+  }
+  .single .work-list{
+    width: 100%;
+    &__item{
+      margin: 0 auto;
+      width: 680px;
+      + *{
+        margin-top: 2.4rem;
+      }
+    }
+  }
+  .blog-list{
+    padding-top: 8rem;
+    width: calc(100% - 14.4rem);
+    a{
+      border-left: 8px solid transparent;
+      &:hover,&:focus{
+        border-color: $accentColor;
+      }
+    }
+  }
+  .personal-info{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 4.8rem auto 0 0;
+    padding: 2.4rem;
+    &__icon{
+      border: 1px solid $accentColor;
+      position: static;
+      max-width: 100%;
+      width: 15%;
+    }
+    &__name{
+      font-size: 1.8rem;
+      text-align: left;
+      + *{
+        margin-top: 1.6rem;
+      }
+    }
+    &__desc{
+      font-size: 1.4rem;
+      margin-left: 2.4rem;
+      margin-top: 0;
+      text-align: left;
+      width: 60%;
+    }
+  }
+  .archive .works,
+  .single .works,
+  .archive .blog,
+  .single .blog{
+    padding-top: 12rem;
+  }
+}

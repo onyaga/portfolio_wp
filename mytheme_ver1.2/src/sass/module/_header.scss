@@ -1,0 +1,172 @@
+@import "lib/color";
+@import "lib/mixin";
+
+$headerHeight : 56px;
+
+/*
+  header
+-------------------------------*/
+.header{
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  &__inner{
+    height: 100%;
+    width: 100%;
+  }
+}
+.toggle-btn{
+  height: $headerHeight;
+  @include absolute_pos(0, 0, auto, auto);
+  width: 60px;
+  z-index: 101;
+  span{
+    background-color: $txtColor;
+    color: $txtColor;
+    display: block;
+    height: 2px;
+    margin: 0 auto;
+    position: relative;
+    width: 24px;
+    &::before, &::after{
+      background-color: $txtColor;
+      content: '';
+      display: block;
+      height: 100%;
+      @include transition(.2);
+      width: 100%;
+    }
+    &::before{
+      @include absolute_pos(-6px, 0, auto, 0);
+    }
+    &::after{
+      @include absolute_pos(6px, 0, auto, 0);
+    }
+  }
+}
+.gnav{
+  background-color: $bgColor;
+  overflow-y: scroll;
+  -ms-overflow-style: none; //IE,edge
+  scrollbar-width: none;
+  @include absolute_pos(0, 0, auto, auto);
+  width: 80%;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}
+.gnav-link{
+  &__item{
+    margin: 2.4rem;
+    a{
+      display: inline-block;
+      padding: .4rem .8rem;
+    }
+  }
+}
+
+// nav-open
+.nav-open{
+  background-color: rgba(0,0,0,.2);
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  @include transition(.2);
+}
+.js-toggle-btn{
+  .nav-open &{
+    span{
+      background-color: transparent;
+      &::before, &::after{
+        @include transition(.2);
+      }
+      &::before{
+        transform: rotate(45deg) translate(4px, 4px);
+      }
+      &::after{
+        transform: rotate(-45deg) translate(4px, -4px);
+      }
+    }
+  }
+}
+.js-toggle-contents{
+  height: 0;
+  opacity: 0;
+  transition: opacity .2s;
+  .nav-open &{
+    height: 100vh;
+    opacity: 1;
+    &::before{
+      content: '';
+      display: block;
+    }
+  }
+}
+
+
+@include mq_pc {
+  .header{
+    position: absolute;
+    &__inner{
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1.6rem;
+      @include contents_pc;
+    }
+  }
+  .toggle-btn{
+    display: none;
+  }
+  .gnav{
+    background-color: transparent;
+    display: block;
+    position: static;
+    width: auto;
+  }
+  .gnav-link{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    &__item{
+      margin: 0 .8rem;
+      a{
+        letter-spacing: .3em;
+        padding: 2.4rem .8rem;
+        position: relative;
+        @include transition(0.3);
+        -ms-writing-mode: tb-rl;
+        writing-mode: vertical-rl;
+        &::before{
+          background-color: $baseColor;
+          content: '';
+          height: 0;
+          @include absolute_pos(0, 0, auto, auto);
+          transition: height .2s ease-in-out;
+          width: 100%;
+          z-index: -1;
+        }
+      }
+    }
+  }
+  .gnav-link{
+    &__item:hover{
+      a{
+        color: $subColor;
+        &::before{
+          height: 100%;
+        }
+      }
+    }
+  }
+  // nav-open
+  .nav-open{
+    background-color: transparent;
+  }
+  .js-toggle-contents{
+    height: auto;
+    opacity: 1;
+  }
+}

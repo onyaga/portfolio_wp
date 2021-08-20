@@ -1,0 +1,84 @@
+//-------------------------------
+//  contents
+//  ex) @include contents_sp {}
+//-------------------------------
+$contents_width: 1200px;
+$contents_width_padding: 5%;
+$contents_margin_sp: 0 24px;
+$contents_margin_pc: 0 auto;
+
+@mixin contents_sp {
+  margin: $contents_margin_sp;
+}
+@mixin contents_pc {
+  margin: $contents_margin_pc;
+  max-width: $contents_width;
+  padding-left: $contents_width_padding;
+  padding-right: $contents_width_padding;
+}
+
+
+//-------------------------------
+//  media query
+//  ex) @include mq_sp {}
+//-------------------------------
+$sp: 767px;
+$tab_min: 768px;
+$tab_max: 1023px;
+$pc: 1024px;
+
+@mixin mq_sp {
+  @media screen and (max-width: $sp) { @content; }
+}
+@mixin mq_pc {
+  @media screen and (min-width: $tab_min) { @content; }
+}
+@mixin mq_tab {
+  @media screen and (min-width: $tab_min) and (max-width: $tab_max) { @content; }
+}
+
+
+//-------------------------------
+//  font family
+//  ex) @include ft_family($gothic);
+//-------------------------------
+$gothic: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', Meiryo, sans-serif;
+$serif: serif;
+
+@mixin ft_family($gothic){
+  font-family: $gothic;
+}
+
+
+//-------------------------------
+//  position
+//  ex) @include absolute_pos(0, auto, 0, 0);
+//-------------------------------
+@mixin absolute_pos($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+
+//-------------------------------
+//  transition
+//  ex) @include transition(0.4);
+//-------------------------------
+@mixin transition($transition){
+  -webkit-transition: all $transition + s linear;
+  transition: all $transition + s linear
+}
+
+
+//-------------------------------
+//  opacity
+//  @include opacity(0.4);
+//-------------------------------
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}

@@ -1,0 +1,30 @@
+@import "lib/color";
+@import "lib/mixin";
+
+/*
+  footer
+-------------------------------*/
+.footer{
+  background-color: $accentColor;
+  padding: 2.4rem 0;
+  &__inner{
+    @include contents_sp;
+  }
+}
+.copyright{
+  color: $baseColor;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 2.4rem;
+  text-align: center;
+}
+
+
+@include mq_pc {
+  .footer{
+    padding: 32px 0;
+    &__inner{
+      @include contents_pc;
+    }
+  }
+}
